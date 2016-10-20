@@ -33,6 +33,13 @@ def top_k_categorical_accuracy(y_true, y_pred, k=5):
     return K.mean(K.in_top_k(y_pred, K.argmax(y_true, axis=-1), k))
 
 
+def top_k_sparse_categorical_accuracy(y_true, y_pred, k=5):
+    '''Same as top-k categorical accuracy rate, but useful when the 
+    predictions are for sparse targets
+    '''
+    return K.mean(K.in_top_k(y_pred, K.max(y_true, axis=-1), k))
+
+
 def mean_squared_error(y_true, y_pred):
     '''Calculates the mean squared error (mse) rate between predicted and target
     values
